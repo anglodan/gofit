@@ -1,0 +1,75 @@
+services:
+  # A Docker web service
+  - type: web
+    name: gofit-server
+    env: docker
+    repo: https://github.com/anglodan/gofit.git # optional
+    region: oregon # optional (defaults to oregon)
+    plan: free # optional (defaults to starter instance type)
+    branch: master # optional (defaults to master)
+    dockerCommand: yarn start:server # optional (defaults to Dockerfile command)
+    numInstances: 1 # optional (defaults to 1)
+    healthCheckPath: /health
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: gofit-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: gofit-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: gofit-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: gofit-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: gofit-db
+          property: password
+      - fromGroup: gofit-be
+
+  - type: web
+    name: gofit-worker
+    env: docker
+    repo: https://github.com/anglodan/gofit.git # optional
+    region: oregon # optional (defaults to oregon)
+    plan: free # optional (defaults to starter instance type)
+    branch: master # optional (defaults to master)
+    dockerCommand: yarn start:worker # optional (defaults to Dockerfile command)
+    numInstances: 1 # optional (defaults to 1)
+    healthCheckPath: /health
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: gofit-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: gofit-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: gofit-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: gofit-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: gofit-db
+          property: password
+      - fromGroup: gofit-be
+
+databases:
+  - name: gofit-db
+    databaseName: gofit_db # optional (Render may add a suffix)
+    plan: free
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
