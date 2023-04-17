@@ -18,6 +18,7 @@
     "migration:revert": "ts-node migration revert"
   },
   "dependencies": {
+    "dotenv": "16.0.3",
     "@vendure/admin-ui-plugin": "1.9.3",
     "@vendure/asset-server-plugin": "1.9.3",
     "@vendure/core": "1.9.3",
@@ -30,7 +31,6 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "concurrently": "7.6.0",
-    "dotenv": "16.0.3",
     "eslint": "^8.38.0",
     "ts-node": "10.9.1",
     "tslint": "^6.1.3",
