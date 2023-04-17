@@ -1,13 +1,13 @@
-import path from "path";
-
+import { AdminUiPlugin } from "@vendure/admin-ui-plugin";
+import { AssetServerPlugin } from "@vendure/asset-server-plugin";
 import { DefaultJobQueuePlugin, DefaultSearchPlugin } from "@vendure/core";
 import { defaultEmailHandlers, EmailPlugin } from "@vendure/email-plugin";
-import { AssetServerPlugin } from "@vendure/asset-server-plugin";
-import { AdminUiPlugin } from "@vendure/admin-ui-plugin";
+import path from "path";
 
-import { IngredientPlugin } from "./plugins/ingredients/ingredients.plugin";
+import { IngredientPlugin } from "./plugins/ingredient/ingredient.plugin";
+import { customAdminUi } from "./compile-admin-ui";
 
-const IS_DEV = process.env.APP_ENV === 'dev';
+const IS_DEV = process.env.APP_ENV === "dev";
 
 export default [
   IngredientPlugin,
@@ -40,5 +40,6 @@ export default [
   AdminUiPlugin.init({
     route: "admin",
     port: 3002,
+    app: customAdminUi({ recompile: IS_DEV, devMode: IS_DEV }),
   }),
 ];

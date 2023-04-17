@@ -5,15 +5,24 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false,
-    "target": "es2019",
+    "target": "es2017",
     "strict": true,
+    "strictPropertyInitialization": false,
     "sourceMap": false,
-    "skipLibCheck": true,
     "outDir": "./dist",
+    "skipLibCheck": true,
     "baseUrl": "./"
   },
-  "exclude": ["node_modules", "migration.ts"],
+  "exclude": [
+    "node_modules",
+    "migration.ts",
+    "src/migrations/*.ts",
+    "src/plugins/**/ui/*",
+    "**/*.spec.ts",
+    "codegen.ts",
+    ".admin-ui",
+    "dist"
+  ],
   "ts-node": {
     "files": true
   }

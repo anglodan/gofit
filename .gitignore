@@ -4,3 +4,7 @@ static/assets
 static/email/test-emails
 
 yarn-error.log
+
+.admin-ui/
+.env
+.vscode/
